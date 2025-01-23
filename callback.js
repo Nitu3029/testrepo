@@ -2,27 +2,31 @@
 //     let ms=4000+new Date().getTime();
 //     while(new Date<ms){}
 // } 
-function registration(){
+function registration(callback){
     //holdTime();
     setTimeout(()=>{
         console.log('registration sucessfully')
+        callback();
     },2000)
     
 }
 
-function sendEmail(){
+function sendEmail(callback){
     //holdTime();
     setTimeout(()=>{
         console.log('send Email successfull')
+        callback();
     },4000)
     
 }
 
-function login(){
+function login(callback){
     //holdTime();
     setTimeout(()=>{
         console.log('login successfull')
+        callback();
     },1000)
+    
 }
 
 function getdata(){
@@ -31,9 +35,12 @@ function getdata(){
         console.log('getdata successfull')
     },3000)
 }
-registration();
-sendEmail();
-login();
-getdata();
-
-console.log('other work')
+// callback hell
+registration(()=>{
+    sendEmail(()=>{
+        login(()=>{
+            getdata();
+        });
+    });
+});
+console.log('other work');
